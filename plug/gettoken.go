@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"bitbucket.org/emotech/common/golang/logs"
+	logs "log"
 )
 
 var token string

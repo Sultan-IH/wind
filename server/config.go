@@ -1,7 +1,8 @@
 package server
 
 import (
-	"bitbucket.org/emotech/common/golang/logs"
+	logs "log"
+
 	"github.com/alexflint/go-arg"
 )
 

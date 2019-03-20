@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"bitbucket.org/emotech/common/golang/logs"
+	logs "log"
+
 	"github.com/Sultan-IH/wind/datahandler"
 	"github.com/Sultan-IH/wind/plug"
 	"github.com/go-chi/chi"

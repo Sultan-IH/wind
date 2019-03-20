@@ -7,7 +7,7 @@ import (
 	"github.com/go-chi/chi"
 	"github.com/gorilla/websocket"
 
-	"bitbucket.org/emotech/common/golang/logs"
+	logs "log"
 )
 
 const (

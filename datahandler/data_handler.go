@@ -1,7 +1,8 @@
 package datahandler
 
 import (
-	"bitbucket.org/emotech/common/golang/logs"
+	logs "log"
+
 	"github.com/Sultan-IH/wind/plug"
 )
 

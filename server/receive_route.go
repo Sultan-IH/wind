@@ -5,7 +5,7 @@ import (
 
 	"github.com/go-chi/chi"
 
-	"bitbucket.org/emotech/common/golang/logs"
+	logs "log"
 
 	"github.com/gorilla/websocket"
 )
