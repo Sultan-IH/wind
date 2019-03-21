@@ -37,8 +37,8 @@ func controlVentilatorGrad(dataChannel DataChannel, plug plug.Plug) {
 }
 
 var (
-	samplePeriod       = time.Second * 3 / 2
-	maxWindSensorValue = 1024
+	samplePeriod       = time.Millisecond * (1000 * 3 / 2)
+	maxWindSensorValue = 1024 - 133
 	powerUpRate        = samplePeriod
 	powerDownRate      = samplePeriod // could be different to samplePeriod
 )
@@ -66,18 +66,22 @@ func controlVentilatorPWM(dataChannel DataChannel, vplug plug.Plug) {
 			percentage := float32(avg) / float32(maxWindSensorValue)
 			logs.Printf("[CONTROL] percentage is :%f; avg: %f; maxval: %f;", percentage, float32(avg), float32(maxWindSensorValue))
 
-			remainder := percentage - vplug.VentilatorState
-			logs.Printf("[CONTROL] remainder is: %f", remainder)
+			logs.Printf("[CONTROL] last ventilator state is : %f", vplug.VentilatorState)
 
-			timeON := time.Duration(remainder) * powerUpRate
+			//remainder := percentage - vplug.VentilatorState
+			logs.Printf("[CONTROL] percentage is: %f", percentage)
+
+			timeON := time.Duration(percentage*100) * samplePeriod
 			logs.Printf("[CONTROL] time on is: %v", timeON)
-
+			logs.Println("[CONTROL]")
 			go pwmVentilator(timeON, vplug)
 
-			timeOFF := samplePeriod - timeON
-			endState := 1 - (timeOFF / powerDownRate)
-			vplug.VentilatorState = float32(endState)
+			// timeOFF := samplePeriod - timeON
+			// endState := 1 - (timeOFF / powerDownRate)
+			// vplug.VentilatorState = float32(endState)
+
 			lastSample = time.Now()
+			buffer = []int{}
 		}
 
 	}
