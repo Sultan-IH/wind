@@ -73,12 +73,8 @@ func controlVentilatorPWM(dataChannel DataChannel, vplug plug.Plug) {
 
 			timeON := time.Duration(percentage*100) * samplePeriod
 			logs.Printf("[CONTROL] time on is: %v", timeON)
-			logs.Println("[CONTROL]")
-			go pwmVentilator(timeON, vplug)
 
-			// timeOFF := samplePeriod - timeON
-			// endState := 1 - (timeOFF / powerDownRate)
-			// vplug.VentilatorState = float32(endState)
+			go pwmVentilator(timeON, vplug)
 
 			lastSample = time.Now()
 			buffer = []int{}

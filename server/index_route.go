@@ -17,12 +17,14 @@ func (s *Server) mountRoutes() {
 	s.router.Route("/", func(r chi.Router) {
 		r.Use(middleware.Logger)
 
-		r.Handle("/", fs)
-		r.Handle("/static", http.StripPrefix("/static", fs))
+		//r.Handle("/static", fs)
 
 		r.Get("/ping", s.pingRouteHandler)
 
 		r.Get("/transmit/{ID}", s.transmitRoute)
 		r.Get("/receive/{ID}", s.receiveRoute)
+
+		r.Handle("/*", fs)
+
 	})
 }
